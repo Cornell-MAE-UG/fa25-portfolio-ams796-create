@@ -1,54 +1,58 @@
 ---
 layout: project
-title: Boeing 737 Max Crashes- Ethics Analysis
-description: Class project with Graphs
-technologies: [MATLAB, Fusion360]
-image: /assets/images/Wind_Turbine_Header.png
+title: Ethics & the Boeing 737 Max & Ethics
+image: /assets/images/plane.jpg
 ---
-### Project Overview: Designing a custom wind turbine blade
+## Ethical Decision-Making and Design Failure in the Boeing 737 MAX
 
-This project focused on the design and experimental testing of a small horizontal-axis wind turbine blade optimized to maximize power extraction under a Weibull-distributed wind environment. 
+In October 2018 and March 2019, two Boeing 737 MAX aircraft crashed shortly after takeoff, killing all passengers and crew aboard. The immediate cause in both accidents was the activation of the Maneuvering Characteristics Augmentation System (MCAS), flight control software designed to prevent stall introduced by the 737 MAX’s new, larger, repositioned engines. While the triggering failure involved faulty Angle of Attack (AOA) sensor data, the accidents were ultimately the result of a sequence of ethical and organizational decisions made during design, certification, and testing.
 
-### Design Process
-Using the wind speed probability distribution, an effective design wind speed of **4.8 m/s** was identified as the velocity that maximizes average power output. Average extracted power was computed by weighting the turbine power at each wind speed by its probability of occurrence:
+#### Issue 1: The Southwest Deal and the Pressure Cooker
 
-                            E[P(U)] = ∫ P(U) · p(U) dU
+Boeing developed the 737 MAX under intense competitive pressure to counter Airbus’s A320neo. This pressure was amplified by Boeing’s relationship with Southwest Airlines. Early in the design process, Boeing committed to delivering an aircraft at approximately one million dollars per plane, which significantly constrained design choices and created an environment in which avoiding more expensive pilot training became a primary design objective.
 
-where P(U) is the turbine power as a function of wind speed and p(U) is the Weibull probability density function.
+This deal created what Boeing engineer Rick Ludtke described as a *“pressure cooker”* that fundamentally altered business and engineering values throughout the entire design process. This represents a clear conflict between engineering ethics and business priorities. The agreement with Southwest was made too early, before Boeing fully understood how design changes would cascade into safety-critical issues.
 
-A MATLAB-based blade element model was developed to guide the blade design. Power extraction was modeled using the cubic dependence on wind speed
 
-                            P(U) = (1/2) ρ A Cₚ U³
+#### Issue 2: Hiding MCAS from Pilots and Regulators
 
-and aerodynamic forces were resolved using blade element theory. The **NACA 4412** airfoil was selected based on its favorable lift-to-drag ratio at low Reynolds numbers, with a design angle of attack of **9°**. Chord and pitch distributions were computed along the blade span to maintain this angle of attack at the selected design condition. The tangential force contributing to torque was calculated as
+Rather than creating a new aircraft design, Boeing modified the existing 737 airframe, introducing new aerodynamic characteristics that required later design compensation. The repositioned, heavier engines and changes to lift characteristics altered the aircraft’s pitch behavior at high angles of attack.
 
-                     Fₜ = (1/2) ρ V²_rel c (C_L sinφ − C_D cosφ)
+MCAS was initially presented to FAA regulators as a small modification to an existing trim system, but it was later expanded to activate during takeoff with the ability to repeatedly command the nose downward. Boeing’s chief technical pilot, Mark Forkner, emailed the FAA requesting that MCAS be removed from the pilot training manual. Forkner later admitted in internal messages that he “basically lied to the FAA, unknowingly,” yet he never corrected this misinformation.
 
-from which torque and power were obtained by integrating along the blade span. Iterating over candidate rotational speeds while enforcing stress, torque, and RPM limits resulted in a final **design RPM of 1050**, with a predicted maximum power output of **3.61 W** at **4.82 m/s**.
+As a result, MCAS was not treated as a high-risk system and received limited scrutiny during certification, largely due to how Boeing characterized the system to regulators.
 
-![Experimental vs. Actual Data]({{ "/assets/images/Power_Curves.png" | relative_url }}){: .inline-image-r style="width: 1200px"}
+#### Issue 3: The Single AOA Sensor Design Flaw
 
-### Testing Summary
+The MCAS software was introduced to address pitch-up characteristics, but Boeing classified unintended MCAS activation as a “Major” failure rather than “Hazardous” or “Catastrophic” in its internal certification documentation (U.S. Department of Transportation, 2020). This classification did not require design redundancy and allowed MCAS to rely on input from a single AOA sensor: a poor design choice given that AOA sensors are known to be unreliable.
 
-The fabricated turbine was tested in a wind tunnel at five wind speeds ranging from **4.1 m/s to 5.8 m/s**. Experimental results showed that the turbine consistently operated at higher rotational speeds than predicted, with an experimentally determined optimal operating speed of **1770 RPM**. The maximum measured power output was **1.8 W at 5.8 m/s**.
+Subsequent investigations concluded that this single-sensor dependency was a central contributing factor in both crashes (Herkert et al., 2020; U.S. Department of Transportation, 2020).
+
+Using a single known-fault-prone sensor violates established engineering best practices. Aircraft systems are typically built with redundancy: two pilots, multiple control paths, and multiple sensors. This fundamental design flaw cascaded into catastrophic consequences.
+
+#### Issue 4: Expanding MCAS Without FAA Notification
+
+Boeing’s decision to expand MCAS to operate during takeoff without informing the FAA demonstrated a knowing abuse of the certification and verification process and was a direct cause of the crashes. Had MCAS not been expanded to function during takeoff, the two crashes would not have occurred.
+
+Boeing assessed unintended MCAS activation as a “Major” failure, which did not require redundancy. Boeing also treated its failure probability analysis as an internal document and did not submit it as a certification deliverable.
+
+The FAA delegated 28 of 87 certification activities, approximately one-third, back to Boeing under the Organization Designation Authorization (ODA) program, including MCAS-related certification. While this delegation had precedent, the MAX program demonstrated how internal review can compromise safety when combined with intense commercial pressure.
+
+#### Issue 5: The Culture of Silence
+
+Following the first crash, engineers raised concerns that were not escalated within the organization. Joe Jacobsen, an FAA engineer who analyzed the first crash, identified MCAS as the primary design flaw and reported it to three managers. However, all were skeptical, and the issue was never escalated.
+
+Pilot training was classified as Level B, consisting primarily of slide presentations and computer-based instruction. Pilots were unprepared for MCAS failures and were unable to effectively override MCAS activation.
+
+Boeing also failed to directly notify the FAA about the AOA alert issue, determining internally that it posed “no organizational impact.” Operators were given until June 18, 2019, to install a software fix finalized on February 13, 2019, allowing the Ethiopian Airlines crash to occur in the interim.
+
+#### Conclusion
+
+Ultimately, the Boeing 737 MAX crashes were not the result of a single technical error, but the culmination of ethical failures stemming from design tradeoffs, regulatory shortcomings, organizational silence, and overwhelming commercial pressure.
 
 ---
 
-| Wind Speed (m/s) | Predicted Max Power (W) | Experimental Max Power (W) | % Error |
-|:----------------:|:----------------------:|:--------------------------:|:-------:|
-| 4.8 (design)     | 3.61                   | 0.70                       | 81%     |
-| 5.8 (max tested) | 6.50                   | 1.80                       | 72%     |
+#### References
 
----
-
-
-Although the turbine underperformed relative to analytical predictions, the results validate the overall blade design methodology and demonstrate the effectiveness of optimizing blade taper, twist, and lift-to-drag ratio under probabilistic wind conditions. Discrepancies between modeled and experimental performance are attributed to simplifying assumptions such as constant induction factors, neglected tip losses, and unmodeled friction.
-
-
-
-![Experimental vs. Actual Data]({{ "/assets/images/Experimental_Actual.png" | relative_url }}){: .inline-image-r style="width: 1200px"}
-
-### My Contribution
-Design process: optimizing pitch and taper in MATLAB, experimental test protocol, data processing and results
-
-![Experimental vs. Actual Data]({{ "/assets/images/Wind_Turbine.png" | relative_url }}){: .inline-image-l style="width: 1200px"}
+- Herkert, J. R., Borenstein, J., & Miller, K. (2020). *The Boeing 737 MAX: Lessons for engineering ethics*. Science and Engineering Ethics, 26, 2957–2974.  
+- U.S. Department of Transportation, Office of Inspector General. (2020). *FAA oversight of Boeing 737 MAX certification*.

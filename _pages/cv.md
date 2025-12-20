@@ -5,10 +5,10 @@ permalink: /cv/
 ---
 ## Curriculum Vitae
 
-[Download my CV]({{ "/assets/CV.pdf" | relative_url }}) in PDF format.
+[Download my full CV]({{ "/assets/CV.pdf" | relative_url }}) in PDF format.
 
 
-**Email:** [ams796@cornell.edu](mailto:ams796@cornell.edu) | | | **Phone:** +1 (248) 606-0736
+**Email:** [ams796@cornell.edu](mailto:ams796@cornell.edu) | | |
 
 ---
 
@@ -26,9 +26,9 @@ Aspiring engineering student with a strong foundation in engineering design. Pas
 ---
 
 #### Skills
-- **Software:** SolidWorks, CREO Parametric, Autodesk Fusion 360, Autodesk AutoCAD
+- **CAD:** SolidWorks, CREO Parametric, Autodesk Fusion 360, Autodesk AutoCAD
 - **Programming:** MATLAB, Simulink, Python
-- **Industry Knowledge:** Rapid Prototyping, 3D Printing, Laser Cutting  
+- **Industry Knowledge:** Rapid Prototyping, 3D Printing, Laser Cutting, Machining (Lathe & Mill) 
 
 ---
 {% comment %}
